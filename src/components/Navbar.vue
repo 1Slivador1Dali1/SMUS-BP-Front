@@ -1,20 +1,28 @@
 <script setup lang="ts">
 import { House, LayoutListIcon, SettingsIcon } from "lucide-vue-next";
+import type { Page } from "../App.vue";
+
+defineProps<{
+  changePage: (page: Page) => void;
+}>();
 </script>
+
 <template>
   <nav class="nav">
     <ul class="nav-list">
-      <li class="nav-list-item"><House class="nav-list-item__icon" /></li>
+      <li class="nav-list-item" @click="() => changePage('dashboard')">
+        <House class="nav-list-item__icon" />
+      </li>
       <li class="nav-list-item">
         <LayoutListIcon class="nav-list-item__icon" />
       </li>
-      <!-- <li class="nav-list-item"><House class="nav-list-item__icon" /></li> -->
-      <li class="nav-list-item">
+      <li class="nav-list-item" @click="() => changePage('settings')">
         <SettingsIcon class="nav-list-item__icon" />
       </li>
     </ul>
   </nav>
 </template>
+
 <style scoped>
 .nav {
   position: fixed;
@@ -38,6 +46,7 @@ import { House, LayoutListIcon, SettingsIcon } from "lucide-vue-next";
   padding: 8px 8px 2px;
   border-radius: 12px;
   color: #42b883;
+  cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
 
